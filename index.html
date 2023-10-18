@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+
+
+    <audio src="wind__artic__cold-6195.mp3" style="padding-left: 80%; padding-top: 20px;" controls autoplay></audio>
+    <style type="text/css">
+
+
+     body{
+    margin:0;
+    padding:0;
+    background-image: url(rock.png);
+    background-size: cover;
+    font-family: 'PT Serif', serif;
+    overflow: hidden;
+
+}
+
+.eyes{
+    position: absolute;
+    top:60%;
+    transform: translateY(-50%);
+    width: 100%;
+    text-align: center;
+}
+.eye{
+    width: 120px;
+    height: 120px;
+    background: #ffffff;
+    margin:40px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+.ball{
+    width: 50px;
+    height: 50px;
+    background: #000000;
+    position: absolute;
+    top:23%;
+    left:33%;
+    border-radius: 50%;;
+    border: 15px solid #000000; opacity: 85%;
+}
+
+    .text-box {position: absolute; top: 4%; left: 10%; transform: translate(-10%, -0%); width: 45%; background-color: none; z-index: 1; display: none; text-align: left; }
+
+
+    </style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>javascript</title>
+    <link href="./css/eyes.css" style="text/css" rel="stylesheet">
+
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+       
+
+
+    <div class="text-box" style="display: block;">
+        <p id="text-content" class="text-content" 
+            style="font-size: 32px; color: whitesmoke; "> 
+            Every new discovery is just a reminder - <br>We're all small and stupid.<br><br>And who knows what great new discovery is coming next...<br>to make us feel like even smaller pieces of shit. </p></div>
+
+
+
+        <div class="eyes">
+            <div class="eye">
+                <div class="ball"></div>
+            </div>
+            <div class="eye">
+                <div class="ball"></div>
+            </div>
+        </div>
+  
+
+    <script type="text/javascript" src="./js/jquery-1.12.4.js"></script>
+    <script type="text/javascript">
+        var balls = document.getElementsByClassName("ball");
+        document.onmousemove = function () {
+            var x = event.clientX * 100 / window.innerWidth + "%";
+            var y = event.clientY * 100 / window.innerHeight + "%";
+
+            for (var i = 0; i < 2; i++) {
+                balls[i].style.left = x;
+                balls[i].style.top = y;
+
+            }
+        }
+
+
+        let clickEnabled = true;
+
+
+        window.addEventListener('load', function() {
+            const dialogBox = document.querySelector('.text-box');
+            dialogBox.style.display = 'block';
+
+
+            const dialogText = document.getElementById('text-content');
+
+            dialogText.innerHTML += "<br>";
+            displayTextSlowly("Every new discovery is just a reminder - ", dialogText, 1000,
+                function() {
+                dialogText.innerHTML += "<br>";
+                displayTextSlowly("We're all small and stupid.", dialogText, 2000, function() {
+                    dialogText.innerHTML += "<br>";
+                    dialogText.innerHTML += "<br>";
+                    displayTextSlowly("And who knows what great new discovery is coming next...", dialogText, 2000,
+                        function() {
+                        dialogText.innerHTML += "<br>";
+                        displayTextSlowly("to make us feel like even smaller pieces of shit.", dialogText, 2000, function() { 
+                            dialogText.innerHTML += "<br>";
+                            displayTextSlowly("", dialogText, 3000, function() { 
+                            dialogText.innerHTML += "<br>";
+
+                
+                            });
+                        });
+                    });
+                });
+            });
+            });
+
+        function displayTextSlowly(text, element, delay, callback) {
+            let currentIndex = 0;
+            const interval = 100;
+            const timer = setInterval(function () {
+                if (currentIndex < text.length) {
+                    element.innerHTML += text.charAt(currentIndex);
+                    currentIndex++;
+                } else {
+                    clearInterval(timer);
+                    if (callback) {
+                        setTimeout(callback, delay);
+                    }
+                }
+            }, interval);
+        }
+
+
+    </script>
+</body>
+
+</html>
